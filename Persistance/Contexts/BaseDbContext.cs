@@ -14,6 +14,10 @@ namespace Persistance.Contexts
     {
         public IConfiguration Configuration { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarModel> CarModels { get; set; }
+        public DbSet<Fuel> Fuels { get; set; }
+        public DbSet<Transmission> Transmissions { get; set; }
 
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {

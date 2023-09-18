@@ -1,25 +1,24 @@
 ﻿using Core.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Domain.Entities;
 
-public class Brand:Entity<Guid>
+public class Transmission : Entity<Guid>
 {
     public string Name { get; set; }
+
     public virtual ICollection<CarModel> CarModels { get; set; }
 
-    public Brand()
+    public Transmission()
     {
         CarModels = new HashSet<CarModel>();
     }
 
-    public Brand(Guid id, string name)
+    public Transmission(Guid id, string name)
+        : this()
     {
         Id = id;
         Name = name;
     }
 }
+

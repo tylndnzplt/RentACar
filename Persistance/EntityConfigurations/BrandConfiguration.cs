@@ -22,6 +22,10 @@ namespace Persistance.EntityConfigurations
             builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
             builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");
 
+            builder.HasIndex(indexExpression: b=> b.Name, name:"UK_Brands_Name").IsUnique();//UniqueKey
+            builder.HasMany(b => b.CarModels);
+
+
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);//default olarak her querye bu filtreyi uygula
 
 

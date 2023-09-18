@@ -16,8 +16,11 @@ public static class PersistenceServiceRegistration
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<BaseDbContext>(options => options.UseInMemoryDatabase("demoapi"));
+        //services.AddDbContext<BaseDbContext>(options => options.UseInMemoryDatabase("demoapi")); InMemory
+        services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RentACar")));
+
         services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<ICarModelRepository, CarModelRepository>();
 
         return services;
     }
