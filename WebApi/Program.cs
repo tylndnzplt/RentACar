@@ -1,4 +1,4 @@
-using Application;
+﻿using Application;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Persistance;
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+
+//builder.Services.AddDistributedMemoryCache(); //yayınlanılan ortamın belleğinde kullanılır.
+builder.Services.AddStackExchangeRedisCache(opt => opt.Configuration = "localhost:6379"); //6379 default port //docker'da
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
